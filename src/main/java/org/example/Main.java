@@ -2,6 +2,7 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
+        //Task #1
         if (args.length > 0) {
             System.out.println("\nUser info: " + args[0]);
         } else {
@@ -19,20 +20,20 @@ public class Main {
 
 
         //Task #2 and #3
-        Screen screen = new Screen("1080x2400", 6.7);
-        Battery battery = new Battery(4500, "Lithium-ion");
+        Screen screen = new Screen("1080x2400", 6.7, "OLED");
+        Battery battery = new Battery(4500, "Lithium-ion", 500);
         Camera camera = new Camera(64, true);
         Processor processor = new Processor("Snapdragon 888", 8);
 
-        Phone phone = new Phone("Samsung", "Galaxy S21", screen, battery, camera, processor);
-        Phone phone2 = new Phone("Samsung", "Galaxy S21", screen, battery, camera, processor);
+        Phone phone = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
+        Phone phone2 = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
 
-        Screen screen3 = new Screen("1440x3200", 6.9);
-        Battery battery3 = new Battery(5000, "Lithium-ion");
+        Screen screen3 = new Screen("1440x3200", 6.9, "OLED");
+        Battery battery3 = new Battery(5000, "Lithium-ion", 700);
         Camera camera3 = new Camera(108, true);
         Processor processor3 = new Processor("Exynos 2100", 8);
 
-        Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", screen3, battery3, camera3, processor3);
+        Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", "SN987654321", screen3, battery3, camera3, processor3, "Android", 256);
 
         System.out.println("\nPhone details:");
         System.out.println(phone.getDeviceDetails());

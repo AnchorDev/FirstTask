@@ -4,9 +4,12 @@ public class Screen {
     protected String resolution;
     protected double size;
 
-    public Screen(String resolution, double size) {
+    private String panelType;
+
+    public Screen(String resolution, double size, String panelType) {
         this.resolution = resolution;
         this.size = size;
+        this.panelType = panelType;
     }
 
     public String getResolution() {
@@ -25,9 +28,17 @@ public class Screen {
         this.size = size;
     }
 
+    public String getPanelType() {
+        return panelType;
+    }
+
+    public void setPanelType(String panelType) {
+        this.panelType = panelType;
+    }
+
     @Override
     public String toString() {
-        return "Screen{" + "resolution='" + resolution + '\'' + ", size=" + size + '}';
+        return "Screen{" + "resolution='" + resolution + '\'' + ", size=" + size + ", panelType='" + panelType + '\'' + '}';
     }
 
     @Override
@@ -35,6 +46,7 @@ public class Screen {
         int result = resolution.hashCode();
         long temp = Double.doubleToLongBits(size);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + panelType.hashCode();
         return result;
     }
 
@@ -43,6 +55,6 @@ public class Screen {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Screen screen = (Screen) obj;
-        return Double.compare(screen.size, size) == 0 && resolution.equals(screen.resolution);
+        return Double.compare(screen.size, size) == 0 && resolution.equals(screen.resolution) && panelType.equals(screen.panelType);
     }
 }

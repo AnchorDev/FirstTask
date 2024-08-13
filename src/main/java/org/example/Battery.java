@@ -4,9 +4,12 @@ public class Battery {
     protected int capacity;
     protected String type;
 
-    public Battery(int capacity, String type) {
+    private int cycleCount;
+
+    public Battery(int capacity, String type, int cycleCount) {
         this.capacity = capacity;
         this.type = type;
+        this.cycleCount = cycleCount;
     }
 
     public int getCapacity() {
@@ -25,8 +28,16 @@ public class Battery {
         this.type = type;
     }
 
+    public int getCycleCount() {
+        return cycleCount;
+    }
+
+    public void setCycleCount(int cycleCount) {
+        this.cycleCount = cycleCount;
+    }
+
     @Override
     public String toString() {
-        return "Battery{" + "capacity=" + capacity + ", type='" + type + '\'' + '}';
+        return "Battery{" + "capacity=" + capacity + ", type='" + type + '\'' + ", cycleCount=" + cycleCount + '}';
     }
 }

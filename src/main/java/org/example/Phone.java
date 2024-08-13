@@ -6,22 +6,30 @@ public class Phone extends Device {
     protected Camera camera;
     protected Processor processor;
 
-    public Phone(String brand, String model, Screen screen, Battery battery, Camera camera, Processor processor) {
-        super(brand, model);
+    private String operatingSystem;
+    private int storageCapacity;
+
+    public Phone(String brand, String model, String serialNumber, Screen screen, Battery battery, Camera camera, Processor processor, String operatingSystem, int storageCapacity) {
+        super(brand, model, serialNumber);
         this.screen = screen;
         this.battery = battery;
         this.camera = camera;
         this.processor = processor;
+        this.operatingSystem = operatingSystem;
+        this.storageCapacity = storageCapacity;
     }
 
     @Override
     public String getDeviceDetails() {
-        return "Phone{" + "brand='" + brand + '\'' +
+        return "Phone{" +
+                "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", screen=" + screen +
                 ", battery=" + battery +
                 ", camera=" + camera +
                 ", processor=" + processor +
+                ", operatingSystem='" + operatingSystem + '\'' +
+                ", storageCapacity=" + storageCapacity +
                 '}';
     }
 
@@ -57,9 +65,32 @@ public class Phone extends Device {
         this.processor = processor;
     }
 
+    public String getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
+
+    public int getStorageCapacity() {
+        return storageCapacity;
+    }
+
+    public void setStorageCapacity(int storageCapacity) {
+        this.storageCapacity = storageCapacity;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + " - Phone{" + "screen=" + screen + ", battery=" + battery + ", camera=" + camera + ", processor=" + processor + '}';
+        return super.toString() + " - Phone{" +
+                "screen=" + screen +
+                ", battery=" + battery +
+                ", camera=" + camera +
+                ", processor=" + processor +
+                ", operatingSystem='" + operatingSystem + '\'' +
+                ", storageCapacity=" + storageCapacity +
+                '}';
     }
 
     @Override
@@ -69,6 +100,8 @@ public class Phone extends Device {
         result = 31 * result + battery.hashCode();
         result = 31 * result + camera.hashCode();
         result = 31 * result + processor.hashCode();
+        result = 31 * result + operatingSystem.hashCode();
+        result = 31 * result + storageCapacity;
         return result;
     }
 
@@ -80,6 +113,11 @@ public class Phone extends Device {
 
         Phone phone = (Phone) obj;
 
-        return screen.equals(phone.screen) && battery.equals(phone.battery) && camera.equals(phone.camera) && processor.equals(phone.processor);
+        return storageCapacity == phone.storageCapacity &&
+                operatingSystem.equals(phone.operatingSystem) &&
+                screen.equals(phone.screen) &&
+                battery.equals(phone.battery) &&
+                camera.equals(phone.camera) &&
+                processor.equals(phone.processor);
     }
 }
