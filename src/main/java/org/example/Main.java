@@ -15,5 +15,21 @@ public class Main {
         Quicksort.quickSort(array, 0, array.length - 1);
         System.out.println("\nSorted array:");
         Quicksort.printArray(array);
+
+
+        Screen screen = new Screen("1080x2400", 6.5);
+        Battery battery = new Battery(4500, "Li-Ion");
+        Camera camera = new Camera(108, true);
+        Processor processor = new Processor("Snapdragon 888", 8);
+
+        Phone phone = new Phone("Samsung", "Galaxy S21", screen, battery, camera, processor);
+
+        System.out.println("\nPhone details:");
+        System.out.println("Brand: " + phone.getBrand());
+        System.out.println("Model: " + phone.getModel());
+        System.out.println("Screen resolution: " + phone.getScreen().getResolution());
+        System.out.println("Battery capacity: " + phone.getBattery().getCapacity());
+        System.out.println("Camera megapixels: " + phone.getCamera().getMegapixels());
+        System.out.println("Processor model: " + phone.getProcessor().getModel());
     }
 }
