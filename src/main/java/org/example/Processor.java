@@ -1,8 +1,8 @@
 package org.example;
 
 public class Processor {
-    private String model;
-    private int cores;
+    protected String model;
+    protected int cores;
 
     public Processor(String model, int cores) {
         this.model = model;
@@ -23,5 +23,10 @@ public class Processor {
 
     public void setCores(int cores) {
         this.cores = cores;
+    }
+
+    @Override
+    public String toString() {
+        return "Processor{" + "model='" + model + '\'' + ", cores=" + cores + '}';
     }
 }

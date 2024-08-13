@@ -1,8 +1,8 @@
 package org.example;
 
 public class Camera {
-    private int megapixels;
-    private boolean hasFlash;
+    protected int megapixels;
+    protected boolean hasFlash;
 
     public Camera(int megapixels, boolean hasFlash) {
         this.megapixels = megapixels;
@@ -23,5 +23,10 @@ public class Camera {
 
     public void setHasFlash(boolean hasFlash) {
         this.hasFlash = hasFlash;
+    }
+
+    @Override
+    public String toString() {
+        return "Camera{" + "megapixels=" + megapixels + ", hasFlash=" + hasFlash + '}';
     }
 }

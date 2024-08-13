@@ -17,19 +17,32 @@ public class Main {
         Quicksort.printArray(array);
 
 
-        Screen screen = new Screen("1080x2400", 6.5);
-        Battery battery = new Battery(4500, "Li-Ion");
-        Camera camera = new Camera(108, true);
+
+        //Task #2 and #3
+        Screen screen = new Screen("1080x2400", 6.7);
+        Battery battery = new Battery(4500, "Lithium-ion");
+        Camera camera = new Camera(64, true);
         Processor processor = new Processor("Snapdragon 888", 8);
 
         Phone phone = new Phone("Samsung", "Galaxy S21", screen, battery, camera, processor);
+        Phone phone2 = new Phone("Samsung", "Galaxy S21", screen, battery, camera, processor);
+
+        Screen screen3 = new Screen("1440x3200", 6.9);
+        Battery battery3 = new Battery(5000, "Lithium-ion");
+        Camera camera3 = new Camera(108, true);
+        Processor processor3 = new Processor("Exynos 2100", 8);
+
+        Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", screen3, battery3, camera3, processor3);
 
         System.out.println("\nPhone details:");
-        System.out.println("Brand: " + phone.getBrand());
-        System.out.println("Model: " + phone.getModel());
-        System.out.println("Screen resolution: " + phone.getScreen().getResolution());
-        System.out.println("Battery capacity: " + phone.getBattery().getCapacity());
-        System.out.println("Camera megapixels: " + phone.getCamera().getMegapixels());
-        System.out.println("Processor model: " + phone.getProcessor().getModel());
+        System.out.println(phone.getDeviceDetails());
+
+        System.out.println("\nPhone1 equals Phone2: " + phone.equals(phone2));
+        System.out.println("Phone1 hashCode: " + phone.hashCode());
+        System.out.println("Phone2 hashCode: " + phone2.hashCode());
+
+        System.out.println("\nPhone1 equals Phone3: " + phone.equals(phone3));
+        System.out.println("Phone1 hashCode: " + phone.hashCode());
+        System.out.println("Phone3 hashCode: " + phone3.hashCode());
     }
 }

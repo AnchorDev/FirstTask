@@ -1,8 +1,8 @@
 package org.example;
 
 public class Battery {
-    private int capacity;
-    private String type;
+    protected int capacity;
+    protected String type;
 
     public Battery(int capacity, String type) {
         this.capacity = capacity;
@@ -23,5 +23,10 @@ public class Battery {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Battery{" + "capacity=" + capacity + ", type='" + type + '\'' + '}';
     }
 }
