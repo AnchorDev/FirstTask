@@ -3,6 +3,7 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         //Task #1
+        System.out.println("\n#Task 1");
         if (args.length > 0) {
             System.out.println("\nUser info: " + args[0]);
         } else {
@@ -20,6 +21,7 @@ public class Main {
 
 
         //Task #2 and #3
+        System.out.println("\n#Task 2 and 3");
         Screen screen = new Screen("1080x2400", 6.7, "OLED");
         Battery battery = new Battery(4500, "Lithium-ion", 500);
         Camera camera = new Camera(64, true);
@@ -45,5 +47,16 @@ public class Main {
         System.out.println("\nPhone1 equals Phone3: " + phone.equals(phone3));
         System.out.println("Phone1 hashCode: " + phone.hashCode());
         System.out.println("Phone3 hashCode: " + phone3.hashCode());
+
+        //Task #4
+        System.out.println("\n#Task 4");
+        phone.charge();
+        phone.connectToWiFi("HomeNetwork");
+        phone.upgradeSystem();
+        phone.checkWaterResistance();
+        phone.repair();
+
+        System.out.println("\nTotal phones created: " + Phone.getTotalPhonesCreated());
+
     }
 }

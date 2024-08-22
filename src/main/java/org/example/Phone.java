@@ -1,6 +1,6 @@
 package org.example;
 
-public class Phone extends Device {
+public class Phone extends Device implements Chargeable, Connectable, Upgradable, WaterResistant, Repairable {
     protected Screen screen;
     protected Battery battery;
     protected Camera camera;
@@ -8,6 +8,15 @@ public class Phone extends Device {
 
     private String operatingSystem;
     private int storageCapacity;
+
+    private final String serialNumber;
+
+    private static int totalPhonesCreated;
+
+    static {
+        totalPhonesCreated = 0;
+        System.out.println("Static block executed. Total phones created: " + totalPhonesCreated);
+    }
 
     public Phone(String brand, String model, String serialNumber, Screen screen, Battery battery, Camera camera, Processor processor, String operatingSystem, int storageCapacity) {
         super(brand, model, serialNumber);
@@ -17,6 +26,12 @@ public class Phone extends Device {
         this.processor = processor;
         this.operatingSystem = operatingSystem;
         this.storageCapacity = storageCapacity;
+        this.serialNumber = serialNumber;
+        totalPhonesCreated++;
+    }
+
+    public static int getTotalPhonesCreated() {
+        return totalPhonesCreated;
     }
 
     @Override
@@ -79,6 +94,31 @@ public class Phone extends Device {
 
     public void setStorageCapacity(int storageCapacity) {
         this.storageCapacity = storageCapacity;
+    }
+
+    @Override
+    public void charge() {
+        System.out.println("Charging the phone...");
+    }
+
+    @Override
+    public void connectToWiFi(String network) {
+        System.out.println("Connecting to WiFi network: " + network);
+    }
+
+    @Override
+    public void upgradeSystem() {
+        System.out.println("Upgrading the operating system...");
+    }
+
+    @Override
+    public void checkWaterResistance() {
+        System.out.println("Checking water resistance of the phone...");
+    }
+
+    @Override
+    public void repair() {
+        System.out.println("Repairing the phone...");
     }
 
     @Override
