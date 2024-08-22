@@ -7,7 +7,7 @@ public class Phone extends Device implements Chargeable, Connectable, Upgradable
     protected Processor processor;
 
     private String operatingSystem;
-    private int storageCapacity;
+    private final int storageCapacity;
 
     private final String serialNumber;
 
@@ -28,6 +28,10 @@ public class Phone extends Device implements Chargeable, Connectable, Upgradable
         this.storageCapacity = storageCapacity;
         this.serialNumber = serialNumber;
         totalPhonesCreated++;
+    }
+
+    public final void displayPhoneDetails() {
+        System.out.println(getDeviceDetails());
     }
 
     public static int getTotalPhonesCreated() {
@@ -90,10 +94,6 @@ public class Phone extends Device implements Chargeable, Connectable, Upgradable
 
     public int getStorageCapacity() {
         return storageCapacity;
-    }
-
-    public void setStorageCapacity(int storageCapacity) {
-        this.storageCapacity = storageCapacity;
     }
 
     @Override

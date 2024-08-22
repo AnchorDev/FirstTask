@@ -55,6 +55,7 @@ public class Main {
         phone.upgradeSystem();
         phone.checkWaterResistance();
         phone.repair();
+        phone.displayPhoneDetails();
 
         System.out.println("\nTotal phones created: " + Phone.getTotalPhonesCreated());
 
