@@ -1,25 +1,46 @@
 package org.example;
+import org.example.exceptions.*;
 
 public class Phone extends Device implements Chargeable, Connectable, Upgradable, WaterResistant, Repairable {
     protected Screen screen;
     protected Battery battery;
     protected Camera camera;
     protected Processor processor;
-
     private String operatingSystem;
     private final int storageCapacity;
-
     private final String serialNumber;
-
     private static int totalPhonesCreated;
+
 
     static {
         totalPhonesCreated = 0;
         System.out.println("Static block executed. Total phones created: " + totalPhonesCreated);
     }
 
-    public Phone(String brand, String model, String serialNumber, Screen screen, Battery battery, Camera camera, Processor processor, String operatingSystem, int storageCapacity) {
+    public Phone(String brand, String model, String serialNumber, Screen screen, Battery battery, Camera camera, Processor processor, String operatingSystem, int storageCapacity)
+            throws InvalidScreenSizeException, InsufficientBatteryCapacityException, InvalidProcessorException, CameraResolutionException, StorageLimitExceededException {
         super(brand, model, serialNumber);
+
+        if (screen.getSize() <= 0) {
+            throw new InvalidScreenSizeException("Screen size must be greater than 0");
+        }
+
+        if (battery.getCapacity() < 1000) {
+            throw new InsufficientBatteryCapacityException("Battery capacity must be at least 1000mAh");
+        }
+
+        if (processor.getCores() < 1) {
+            throw new InvalidProcessorException("Processor must have at least 1 core");
+        }
+
+        if (camera.getMegapixels() < 12) {
+            throw new CameraResolutionException("Camera resolution must be at least 12MP");
+        }
+
+        if (storageCapacity > 512) {
+            throw new StorageLimitExceededException("Storage capacity exceeds limit of 512GB");
+        }
+
         this.screen = screen;
         this.battery = battery;
         this.camera = camera;

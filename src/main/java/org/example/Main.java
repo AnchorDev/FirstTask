@@ -1,8 +1,13 @@
 package org.example;
 
+import org.example.exceptions.*;
+
+import java.io.*;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //Task #1
+        // Task #1
         System.out.println("\n#Task 1");
         if (args.length > 0) {
             System.out.println("\nUser info: " + args[0]);
@@ -18,46 +23,66 @@ public class Main {
         System.out.println("\nSorted array:");
         Quicksort.printArray(array);
 
-
-
-        //Task #2 and #3
-        System.out.println("\n#Task 2 and 3");
+        // Task #2 and #3
+        System.out.println("\n#Task 2 and #3");
         Screen screen = new Screen("1080x2400", 6.7, "OLED");
+
         Battery battery = new Battery(4500, "Lithium-ion", 500);
+        //Battery battery = new Battery(800, "Lithium-ion", 500); //Example of an Exception
+
         Camera camera = new Camera(64, true);
+        //Camera camera = new Camera(8, true); //Example of an Exception
+
         Processor processor = new Processor("Snapdragon 888", 8);
 
-        Phone phone = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
-        Phone phone2 = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
+        try {
+            Phone phone = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
+            Phone phone2 = new Phone("Samsung", "Galaxy S21", "SN123456789", screen, battery, camera, processor, "Android", 128);
 
-        Screen screen3 = new Screen("1440x3200", 6.9, "OLED");
-        Battery battery3 = new Battery(5000, "Lithium-ion", 700);
-        Camera camera3 = new Camera(108, true);
-        Processor processor3 = new Processor("Exynos 2100", 8);
+            Screen screen3 = new Screen("1440x3200", 6.9, "OLED");
+            Battery battery3 = new Battery(5000, "Lithium-ion", 700);
+            Camera camera3 = new Camera(108, true);
+            Processor processor3 = new Processor("Exynos 2100", 8);
 
-        Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", "SN987654321", screen3, battery3, camera3, processor3, "Android", 256);
+            Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", "SN987654321", screen3, battery3, camera3, processor3, "Android", 256);
 
-        System.out.println("\nPhone details:");
-        System.out.println(phone.getDeviceDetails());
+            System.out.println("\nPhone details:");
+            System.out.println(phone.getDeviceDetails());
 
-        System.out.println("\nPhone1 equals Phone2: " + phone.equals(phone2));
-        System.out.println("Phone1 hashCode: " + phone.hashCode());
-        System.out.println("Phone2 hashCode: " + phone2.hashCode());
+            System.out.println("\nPhone1 equals Phone2: " + phone.equals(phone2));
+            System.out.println("Phone1 hashCode: " + phone.hashCode());
+            System.out.println("Phone2 hashCode: " + phone2.hashCode());
 
-        System.out.println("\nPhone1 equals Phone3: " + phone.equals(phone3));
-        System.out.println("Phone1 hashCode: " + phone.hashCode());
-        System.out.println("Phone3 hashCode: " + phone3.hashCode());
+            System.out.println("\nPhone1 equals Phone3: " + phone.equals(phone3));
+            System.out.println("Phone1 hashCode: " + phone.hashCode());
+            System.out.println("Phone3 hashCode: " + phone3.hashCode());
 
-        //Task #4
-        System.out.println("\n#Task 4");
-        phone.charge();
-        phone.connectToWiFi("HomeNetwork");
-        phone.upgradeSystem();
-        phone.checkWaterResistance();
-        phone.repair();
-        phone.displayPhoneDetails();
+            // Task #4
+            System.out.println("\n#Task 4");
+            phone.charge();
+            phone.connectToWiFi("HomeNetwork");
+            phone.upgradeSystem();
+            phone.checkWaterResistance();
+            phone.repair();
+            phone.displayPhoneDetails();
 
-        System.out.println("\nTotal phones created: " + Phone.getTotalPhonesCreated());
+            System.out.println("\nTotal phones created: " + Phone.getTotalPhonesCreated());
 
+            // Task #5
+            System.out.println("\n#Task 5");
+
+            try (InputStream inputStream = Main.class.getResourceAsStream("/TextFile.txt");
+                 Scanner scanner = new Scanner(inputStream)) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    System.out.println("Information from file: " + line);
+                }
+            } catch (Exception e) {
+                System.err.println("Error reading file: " + e.getMessage());
+            }
+
+        } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
+            System.err.println("Exception occurred while creating phone: " + e.getMessage());
+        }
     }
 }
