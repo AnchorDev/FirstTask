@@ -81,6 +81,29 @@ public class Main {
                 System.err.println("Error reading file: " + e.getMessage());
             }
 
+            //Task #6
+            System.out.println("\n#Task 6");
+
+            phone.installApp("Facebook");
+            phone.addContact("Anakin Skywalker");
+            phone.updateSetting("Brightness", "70%");
+            phone.addNotification("Carol invited you do friend list");
+            phone.addRecentCall("Bob");
+
+            System.out.println("\nUpdated Installed Apps: " + phone.getInstalledApps());
+            System.out.println("Updated Contacts: " + phone.getContacts());
+            System.out.println("Updated Settings: " + phone.getSettings());
+            System.out.println("Updated Notifications: " + phone.getNotifications());
+            System.out.println("Updated Recent Calls: " + phone.getRecentCalls());
+
+            CustomLinkedList<String> customList = new CustomLinkedList<>();
+            customList.add("First Element");
+            customList.add("Second Element");
+            customList.add("Third Element");
+
+            System.out.println();
+            customList.printList();
+
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
             System.err.println("Exception occurred while creating phone: " + e.getMessage());
         }

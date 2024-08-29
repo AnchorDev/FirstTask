@@ -1,5 +1,6 @@
 package org.example;
 import org.example.exceptions.*;
+import java.util.*;
 
 public class Phone extends Device implements Chargeable, Connectable, Upgradable, WaterResistant, Repairable {
     protected Screen screen;
@@ -11,6 +12,11 @@ public class Phone extends Device implements Chargeable, Connectable, Upgradable
     private final String serialNumber;
     private static int totalPhonesCreated;
 
+    private List<String> installedApps;
+    private Set<String> contacts;
+    private Map<String, String> settings;
+    private Queue<String> notifications;
+    private Deque<String> recentCalls;
 
     static {
         totalPhonesCreated = 0;
@@ -49,10 +55,56 @@ public class Phone extends Device implements Chargeable, Connectable, Upgradable
         this.storageCapacity = storageCapacity;
         this.serialNumber = serialNumber;
         totalPhonesCreated++;
+
+        this.installedApps = new ArrayList<>();
+        this.contacts = new HashSet<>();
+        this.settings = new HashMap<>();
+        this.notifications = new LinkedList<>();
+        this.recentCalls = new ArrayDeque<>();
     }
 
     public final void displayPhoneDetails() {
         System.out.println(getDeviceDetails());
+    }
+
+    public void installApp(String app) {
+        installedApps.add(app);
+    }
+
+    public void addContact(String contact) {
+        contacts.add(contact);
+    }
+
+    public void updateSetting(String key, String value) {
+        settings.put(key, value);
+    }
+
+    public void addNotification(String notification) {
+        notifications.add(notification);
+    }
+
+    public void addRecentCall(String call) {
+        recentCalls.addFirst(call);
+    }
+
+    public List<String> getInstalledApps() {
+        return installedApps;
+    }
+
+    public Set<String> getContacts() {
+        return contacts;
+    }
+
+    public Map<String, String> getSettings() {
+        return settings;
+    }
+
+    public Queue<String> getNotifications() {
+        return notifications;
+    }
+
+    public Deque<String> getRecentCalls() {
+        return recentCalls;
     }
 
     public static int getTotalPhonesCreated() {
