@@ -1,9 +1,15 @@
 package org.example;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.example.exceptions.*;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -103,6 +109,26 @@ public class Main {
 
             System.out.println();
             customList.printList();
+
+            // Task #7
+            System.out.println("\n#Task 7");
+
+            try {
+                File inputFile = new File(Main.class.getResource("/TextFile.txt").getFile());
+                String content = FileUtils.readFileToString(inputFile, StandardCharsets.UTF_8);
+
+                String[] words = StringUtils.split(content, " ,.!?\n");
+
+                Set<String> uniqueWords = new HashSet<>(Arrays.asList(words));
+                int uniqueWordCount = uniqueWords.size();
+
+                File outputFile = new File("src/main/resources/output.txt");
+                FileUtils.writeStringToFile(outputFile, "Unique words count: " + uniqueWordCount, StandardCharsets.UTF_8);
+
+
+            } catch (IOException e) {
+                System.err.println("Error processing file: " + e.getMessage());
+            }
 
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
             System.err.println("Exception occurred while creating phone: " + e.getMessage());
