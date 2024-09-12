@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Enums;
 
 public enum PhoneOS {
     ANDROID("Google-based"),

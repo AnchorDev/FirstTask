@@ -1,7 +1,13 @@
-package org.example;
+package org.example.classes;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.example.Enums.PhoneCondition;
+import org.example.Enums.PhoneOS;
+import org.example.Enums.PhoneSize;
+import org.example.Interfaces.PhoneAction;
+import org.example.Interfaces.PhoneComparator;
+import org.example.Interfaces.PhoneFilter;
 import org.example.exceptions.*;
 
 import java.io.*;

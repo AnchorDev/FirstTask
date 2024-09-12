@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Interfaces;
 
 public interface Connectable {
     void connectToWiFi(String network);

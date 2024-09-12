@@ -1,4 +1,5 @@
-package org.example;
+package org.example.classes;
+import org.example.Interfaces.*;
 import org.example.exceptions.*;
 import java.util.*;
 

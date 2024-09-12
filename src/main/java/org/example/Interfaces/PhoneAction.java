@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Interfaces;
 
 @FunctionalInterface
 public interface PhoneAction<T> {

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Enums;
 
 public enum PhoneSize {
     SMALL(5.0), MEDIUM(6.0), LARGE(7.0);

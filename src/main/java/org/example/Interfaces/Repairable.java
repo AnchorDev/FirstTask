@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Interfaces;
 
 public interface Repairable {
     void repair();

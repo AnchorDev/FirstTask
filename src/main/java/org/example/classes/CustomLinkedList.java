@@ -1,4 +1,4 @@
-package org.example;
+package org.example.classes;
 
 public class CustomLinkedList<T> {
     private Node<T> head;

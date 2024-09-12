@@ -1,4 +1,4 @@
-package org.example;
+package org.example.classes;
 
 public class Quicksort {
     private static void swap(int[] array, int i, int j) {
