@@ -159,6 +159,14 @@ public class Main {
             System.out.println("Phone Condition: " + PhoneCondition.NEW);
             System.out.println("Phone Size: " + PhoneSize.LARGE);
 
+            // Bonus task from Task 8
+            System.out.println("\n#Bonus Task 8");
+            try {
+                PhoneLambdaTask.runLambdaExamples();
+            } catch (CameraResolutionException | InsufficientBatteryCapacityException | InvalidScreenSizeException | InvalidProcessorException | StorageLimitExceededException e) {
+                System.err.println("Error occurred: " + e.getMessage());
+            }
+
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
             System.err.println("Exception occurred while creating phone: " + e.getMessage());
         }
