@@ -130,6 +130,29 @@ public class Main {
                 System.err.println("Error processing file: " + e.getMessage());
             }
 
+            // Task #8
+            System.out.println("\n#Task 8");
+
+            PhoneAction<Phone> phoneAction = phone5 -> System.out.println("Operating on phone: " + phone5.getModel());
+            phoneAction.perform(new Phone("Samsung", "Galaxy S21", "SN123456789", new Screen("1080x2400", 6.7, "OLED"),
+                    new Battery(4500, "Lithium-ion", 500), new Camera(64, true), new Processor("Snapdragon 888", 8),
+                    "Android", 128));
+
+            PhoneFilter<String> contactFilter = contact -> contact.length() > 5;
+            System.out.println("Contact filter result: " + contactFilter.filter("Anakin"));
+
+            PhoneComparator<Phone> phoneComparator = (p1, p2) -> Integer.compare(p1.getBattery().getCapacity(), p2.getBattery().getCapacity());
+            System.out.println("Phone comparison result: " + phoneComparator.compare(new Phone("Samsung", "Galaxy S21", "SN123456789", new Screen("1080x2400", 6.7, "OLED"),
+                            new Battery(4500, "Lithium-ion", 500), new Camera(64, true), new Processor("Snapdragon 888", 8),
+                            "Android", 128),
+                    new Phone("iPhone", "12 Pro", "SN987654321", new Screen("1170x2532", 6.1, "OLED"),
+                            new Battery(4000, "Lithium-ion", 400), new Camera(12, true), new Processor("A14 Bionic", 6),
+                            "iOS", 128)));
+
+            System.out.println("\nPhone OS: " + PhoneOS.ANDROID);
+            System.out.println("Phone Condition: " + PhoneCondition.NEW);
+            System.out.println("Phone Size: " + PhoneSize.LARGE);
+
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
             System.err.println("Exception occurred while creating phone: " + e.getMessage());
         }
