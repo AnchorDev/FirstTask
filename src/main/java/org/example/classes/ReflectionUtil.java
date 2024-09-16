@@ -3,8 +3,8 @@ package org.example.classes;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import org.apache.logging.log4j.Logger;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class ReflectionUtil {
