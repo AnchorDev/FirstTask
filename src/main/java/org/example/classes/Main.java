@@ -25,31 +25,27 @@ public class Main {
 
     public static void main(String[] args) {
         // Task #1
-        System.out.println("\n#Task 1");
+        LOGGER.info("#Task 1");
         if (args.length > 0) {
-            System.out.println("\nUser info: " + args[0]);
+            LOGGER.info("User info: " + args[0]);
         } else {
-            System.out.println("No user info provided.");
+            LOGGER.info("No user info provided.");
         }
 
         int[] array = {34, 7, 23, 32, 5, 62, 32, 64, 12, 22, 45, 78, 21, 54, 33, 90, 10, 11, 6, 3, 99, 2, 1, 88, 15, 43, 56, 77, 38, 19, 44, 55, 76, 39, 41, 25, 14, 17, 18, 29, 30, 50, 59, 28, 27, 26, 13, 4, 16, 8};
-        System.out.println("\nUnsorted array:");
+        LOGGER.info("Unsorted array:");
         Quicksort.printArray(array);
 
         Quicksort.quickSort(array, 0, array.length - 1);
-        System.out.println("\nSorted array:");
+        LOGGER.info("Sorted array:");
         Quicksort.printArray(array);
 
         // Task #2 and #3
-        System.out.println("\n#Task 2 and #3");
+        LOGGER.info("#Task 2 and #3");
         Screen screen = new Screen("1080x2400", 6.7, "OLED");
 
         Battery battery = new Battery(4500, "Lithium-ion", 500);
-        //Battery battery = new Battery(800, "Lithium-ion", 500); //Example of an Exception
-
         Camera camera = new Camera(64, true);
-        //Camera camera = new Camera(8, true); //Example of an Exception
-
         Processor processor = new Processor("Snapdragon 888", 8);
 
         try {
@@ -63,19 +59,19 @@ public class Main {
 
             Phone phone3 = new Phone("Samsung", "Galaxy S21 Ultra", "SN987654321", screen3, battery3, camera3, processor3, "Android", 256);
 
-            System.out.println("\nPhone details:");
-            System.out.println(phone.getDeviceDetails());
+            LOGGER.info("Phone details:");
+            LOGGER.info(phone.getDeviceDetails());
 
-            System.out.println("\nPhone1 equals Phone2: " + phone.equals(phone2));
-            System.out.println("Phone1 hashCode: " + phone.hashCode());
-            System.out.println("Phone2 hashCode: " + phone2.hashCode());
+            LOGGER.info("Phone1 equals Phone2: " + phone.equals(phone2));
+            LOGGER.info("Phone1 hashCode: " + phone.hashCode());
+            LOGGER.info("Phone2 hashCode: " + phone2.hashCode());
 
-            System.out.println("\nPhone1 equals Phone3: " + phone.equals(phone3));
-            System.out.println("Phone1 hashCode: " + phone.hashCode());
-            System.out.println("Phone3 hashCode: " + phone3.hashCode());
+            LOGGER.info("Phone1 equals Phone3: " + phone.equals(phone3));
+            LOGGER.info("Phone1 hashCode: " + phone.hashCode());
+            LOGGER.info("Phone3 hashCode: " + phone3.hashCode());
 
             // Task #4
-            System.out.println("\n#Task 4");
+            LOGGER.info("#Task 4");
             phone.charge();
             phone.connectToWiFi("HomeNetwork");
             phone.upgradeSystem();
@@ -83,23 +79,23 @@ public class Main {
             phone.repair();
             phone.displayPhoneDetails();
 
-            System.out.println("\nTotal phones created: " + Phone.getTotalPhonesCreated());
+            LOGGER.info("Total phones created: " + Phone.getTotalPhonesCreated());
 
             // Task #5
-            System.out.println("\n#Task 5");
+            LOGGER.info("#Task 5");
 
             try (InputStream inputStream = Main.class.getResourceAsStream("/TextFile.txt");
                  Scanner scanner = new Scanner(inputStream)) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
-                    System.out.println("Information from file: " + line);
+                    LOGGER.info("Information from file: " + line);
                 }
             } catch (Exception e) {
-                System.err.println("Error reading file: " + e.getMessage());
+                LOGGER.error("Error reading file: " + e.getMessage());
             }
 
-            //Task #6
-            System.out.println("\n#Task 6");
+            // Task #6
+            LOGGER.info("#Task 6");
 
             phone.installApp("Facebook");
             phone.addContact("Anakin Skywalker");
@@ -107,28 +103,28 @@ public class Main {
             phone.addNotification("Carol invited you do friend list");
             phone.addRecentCall("Bob");
 
-            System.out.println("\nUpdated Installed Apps: " + phone.getInstalledApps());
-            System.out.println("Updated Contacts: " + phone.getContacts());
-            System.out.println("Updated Settings: " + phone.getSettings());
-            System.out.println("Updated Notifications: " + phone.getNotifications());
-            System.out.println("Updated Recent Calls: " + phone.getRecentCalls());
+            LOGGER.info("Updated Installed Apps: " + phone.getInstalledApps());
+            LOGGER.info("Updated Contacts: " + phone.getContacts());
+            LOGGER.info("Updated Settings: " + phone.getSettings());
+            LOGGER.info("Updated Notifications: " + phone.getNotifications());
+            LOGGER.info("Updated Recent Calls: " + phone.getRecentCalls());
 
             CustomLinkedList<String> customList = new CustomLinkedList<>();
             customList.add("First Element");
             customList.add("Second Element");
             customList.add("Third Element");
 
-            System.out.println();
+            LOGGER.info("Custom List:");
             customList.printList();
 
             // Task #7
-            System.out.println("\n#Task 7");
+            LOGGER.info("#Task 7");
 
             try {
                 File inputFile = new File(Main.class.getResource("/TextFile.txt").getFile());
                 String content = FileUtils.readFileToString(inputFile, StandardCharsets.UTF_8);
 
-                String[] words = StringUtils.split(content, " ,.!?\n");
+                String[] words = StringUtils.split(content, " ,.!?");
 
                 Set<String> uniqueWords = new HashSet<>(Arrays.asList(words));
                 int uniqueWordCount = uniqueWords.size();
@@ -136,42 +132,41 @@ public class Main {
                 File outputFile = new File("src/main/resources/output.txt");
                 FileUtils.writeStringToFile(outputFile, "Unique words count: " + uniqueWordCount, StandardCharsets.UTF_8);
 
-
             } catch (IOException e) {
-                System.err.println("Error processing file: " + e.getMessage());
+                LOGGER.error("Error processing file: " + e.getMessage());
             }
 
             // Task #8
-            System.out.println("\n#Task 8");
+            LOGGER.info("#Task 8");
 
-            PhoneAction<Phone> phoneAction = phone5 -> System.out.println("Operating on phone: " + phone5.getModel());
+            PhoneAction<Phone> phoneAction = phone5 -> LOGGER.info("Operating on phone: " + phone5.getModel());
             phoneAction.perform(new Phone("Samsung", "Galaxy S21", "SN123456789", new Screen("1080x2400", 6.7, "OLED"),
                     new Battery(4500, "Lithium-ion", 500), new Camera(64, true), new Processor("Snapdragon 888", 8),
                     "Android", 128));
 
             PhoneFilter<String> contactFilter = contact -> contact.length() > 5;
-            System.out.println("Contact filter result: " + contactFilter.filter("Anakin"));
+            LOGGER.info("Contact filter result: " + contactFilter.filter("Anakin"));
 
             PhoneComparator<Phone> phoneComparator = (p1, p2) -> Integer.compare(p1.getBattery().getCapacity(), p2.getBattery().getCapacity());
-            System.out.println("Phone comparison result: " + phoneComparator.compare(new Phone("Samsung", "Galaxy S21", "SN123456789", new Screen("1080x2400", 6.7, "OLED"),
+            LOGGER.info("Phone comparison result: " + phoneComparator.compare(
+                    new Phone("Samsung", "Galaxy S21", "SN123456789", new Screen("1080x2400", 6.7, "OLED"),
                             new Battery(4500, "Lithium-ion", 500), new Camera(64, true), new Processor("Snapdragon 888", 8),
                             "Android", 128),
                     new Phone("iPhone", "12 Pro", "SN987654321", new Screen("1170x2532", 6.1, "OLED"),
                             new Battery(4000, "Lithium-ion", 400), new Camera(12, true), new Processor("A14 Bionic", 6),
                             "iOS", 128)));
 
-            System.out.println("\nPhone OS: " + PhoneOS.ANDROID);
-            System.out.println("Phone Condition: " + PhoneCondition.NEW);
-            System.out.println("Phone Size: " + PhoneSize.LARGE);
+            LOGGER.info("Phone OS: " + PhoneOS.ANDROID);
+            LOGGER.info("Phone Condition: " + PhoneCondition.NEW);
+            LOGGER.info("Phone Size: " + PhoneSize.LARGE);
 
             // Bonus task from Task 8
-            System.out.println("\n#Bonus Task 8");
+            LOGGER.info("#Bonus Task 8");
             try {
                 PhoneLambdaTask.runLambdaExamples();
             } catch (CameraResolutionException | InsufficientBatteryCapacityException | InvalidScreenSizeException | InvalidProcessorException | StorageLimitExceededException e) {
-                System.err.println("Error occurred: " + e.getMessage());
+                LOGGER.error("Error occurred: " + e.getMessage());
             }
-
 
             try {
                 LOGGER.info("#Task 9 - Collection Streaming Operations");
@@ -184,7 +179,8 @@ public class Main {
             }
 
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
-            System.err.println("Exception occurred while creating phone: " + e.getMessage());
+            LOGGER.error("Exception occurred while creating phone: " + e.getMessage());
         }
     }
 }
+
