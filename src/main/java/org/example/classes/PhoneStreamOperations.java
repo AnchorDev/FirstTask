@@ -3,11 +3,13 @@ package org.example.classes;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+
 public class PhoneStreamOperations {
-    private static final Logger LOGGER = Logger.getLogger(PhoneStreamOperations.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(PhoneStreamOperations.class);
 
     public static void performStreamOperations(Phone phone) {
         // Map: Convert app names to uppercase
