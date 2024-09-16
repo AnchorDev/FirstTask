@@ -17,7 +17,12 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Main {
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
         // Task #1
         System.out.println("\n#Task 1");
@@ -165,6 +170,17 @@ public class Main {
                 PhoneLambdaTask.runLambdaExamples();
             } catch (CameraResolutionException | InsufficientBatteryCapacityException | InvalidScreenSizeException | InvalidProcessorException | StorageLimitExceededException e) {
                 System.err.println("Error occurred: " + e.getMessage());
+            }
+
+
+            try {
+                LOGGER.info("#Task 9 - Collection Streaming Operations");
+                PhoneStreamOperations.performStreamOperations(phone);
+
+                LOGGER.info("#Task 9 - Reflection");
+                ReflectionUtil.performReflection();
+            } catch (Exception e) {
+                LOGGER.error("Error occurred in Task #9: ", e);
             }
 
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
