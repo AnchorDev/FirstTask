@@ -178,6 +178,41 @@ public class Main {
                 LOGGER.error("Error occurred in Task #9: ", e);
             }
 
+            // Task #10
+            LOGGER.info("#Task 10");
+
+            Thread thread1 = new Thread(new RunnableTask("Thread 1"));
+            Thread thread2 = new Thread(new RunnableTask("Thread 2"));
+
+            thread1.start();
+            thread2.start();
+
+            try {
+                thread1.join();
+                thread2.join();
+            } catch (InterruptedException e) {
+                LOGGER.error("Main thread interrupted", e);
+            }
+
+            CallableTask callableTask = new CallableTask();
+            Thread callableThread = new Thread(() -> {
+                try {
+                    callableTask.call();
+                } catch (Exception e) {
+                    LOGGER.error("Callable thread error", e);
+                }
+            });
+
+            callableThread.start();
+
+            try {
+                callableThread.join();
+            } catch (InterruptedException e) {
+                LOGGER.error("Callable thread interrupted", e);
+            }
+
+            LOGGER.info("All threads have completed execution.");
+
         } catch (InvalidScreenSizeException | InsufficientBatteryCapacityException | InvalidProcessorException | CameraResolutionException | StorageLimitExceededException e) {
             LOGGER.error("Exception occurred while creating phone: " + e.getMessage());
         }
